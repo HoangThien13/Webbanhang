@@ -1,0 +1,29 @@
+﻿@model Webbanhang.DataAccess.Category
+@{
+    ViewData["Title"] = "Chỉnh sửa danh mục";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-lg p-4">
+                <div class="card-header bg-warning text-white text-center">
+                    <h2 class="fw-bold">Chỉnh sửa danh mục</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Update" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-bold">Tên danh mục</label>
+                            <input asp-for="Name" class="form-control" placeholder="Nhập tên danh mục" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-warning btn-lg shadow-sm w-100">Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

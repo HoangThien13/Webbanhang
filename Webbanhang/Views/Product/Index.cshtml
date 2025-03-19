@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Webbanhang.DataAccess.Product>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="text-primary">Danh sách sản phẩm</h2>
+    <a asp-action="Add" class="btn btn-success">
+        <i class="bi bi-plus-lg"></i> Thêm sản phẩm
+    </a>
+</div>
+
+<table class="table table-hover table-bordered shadow-sm">
+    <thead class="table-dark text-center">
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Mô tả</th>
+            <th>Hình ảnh</th>
+            <th>Danh mục</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody class="text-center align-middle">
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td class="fw-bold">@product.Name</td>
+                <td class="text-success">@($"{product.Price:#,##0} $")</td>
+                <td>@product.Description</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(product.ImageUrl))
+                    {
+                        <img src="@product.ImageUrl" alt="Product Image" class="rounded shadow-sm" style="max-width: 80px; height: auto;" />
+                    }
+                    else
+                    {
+                        <span class="text-muted">Không có ảnh</span>
+                    }
+                </td>
+                <td>@product.Category?.Name</td>
+                <td>
+                    <a asp-action="Display" asp-route-id="@product.Id" class="btn btn-info btn-sm">
+                        <i class="bi bi-eye"></i> Xem
+                    </a>
+                    <a asp-action="Update" asp-route-id="@product.Id" class="btn btn-warning btn-sm">
+                        <i class="bi bi-pencil-square"></i> Sửa
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i> Xóa
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
